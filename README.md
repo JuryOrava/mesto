@@ -5,4 +5,4 @@ ____________________________________________
 
 Сначала было страшно, потом ещё страшнее, а сейчас вроде ничего.
 
-[Проект на GitHub](https://juryorava.github.io/russian-travel/)
+[Проект на GitHub](https://juryorava.github.io/mesto/)
