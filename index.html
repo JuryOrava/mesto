@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="page/index.css">
+  <meta name="description" content="Проектная работа по завершению четвертого спринта">
+  <meta name="author" content="Юрий Орава">
+  <meta name="keywords" content="travel, Russia">
+    <title>Mesto Russia</title>
+</head>
+<body class="page">
+    <header class="header">
+        <a href="#"><img class="logo" alt="Логотип" src="images/logo.svg"></a>
+    </header>
+    <main class="content">
+      <section class="profile">
+        <div class="profile__info">
+          <img class="profile__image" src="images/avatar.jpg">
+          <div class="profile__descriptions">
+            <div class="profile__name">
+              <p id="name" class="profile__name_text">Жак-Ив Кусто</p>
+              <button class="profile__btn"><img class="profile__edit" src="images/Edit_Button.png"></button>
+            </div>
+            <p id="description" class="profile__description">Исследователь океана</p>
+          </div>
+        </div>
+        <a class="profile__link" href="#"><img src="images/Add_Button.png"></a>
+      </section>
+      <section class="elements">
+      <ul class="cards">
+        <li class="cards__item">
+          <img class="cards__image" src="images/karachaevo.jpg" alt="Карачаевск">
+          <div class="cards__description">
+            <h3 class="cards__title">Карачаевск</h3>
+            <button class="cards__like"><img src="images/heart.svg" class="cards__like-img"></button>
+          </div>
+        </li>
+        <li class="cards__item">
+          <img class="cards__image" src="images/elbrus.jpg" alt="Гора Эльбрус">
+          <div class="cards__description">
+            <h3 class="cards__title">Гора Эльбрус</h3> 
+            <button class="cards__like"><img src="images/heart.svg" class="cards__like-img"></button>
+          </div>
+        </li>
+        <li class="cards__item">
+          <img class="cards__image" src="images/dombai.jpg" alt="Домбаи">
+          <div class="cards__description">
+            <h3 class="cards__title">Домбаи</h3>
+            <button class="cards__like"><img src="images/heart.svg" class="cards__like-img"></button>
+          </div>
+        </li> 
+
+        <li class="cards__item">
+          <img class="cards__image" src="images/elbrus.jpg" alt="Гора Эльбрус">
+          <div class="cards__description">
+            <h3 class="cards__title">Гора Эльбрус</h3>
+            <button class="cards__like"><img src="images/heart.svg" class="cards__like-img"></button>
+          </div>
+        </li>
+        <li class="cards__item">
+          <img class="cards__image" src="images/dombai.jpg" alt="Домбаи">
+          <div class="cards__description">
+            <h3 class="cards__title">Домбаи</h3>
+            <button class="cards__like"><img src="images/heart.svg" class="cards__like-img"></button>
+          </div>
+        </li> 
+        <li class="cards__item">
+          <img class="cards__image" src="images/karachaevo.jpg" alt="Карачаевск">
+          <div class="cards__description">
+            <h3 class="cards__title">Карачаево-Черкессия</h3>
+            <button class="cards__like"><img src="images/heart.svg" class="cards__like-img"></button>
+          </div>
+        </li>
+      </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__author">&copy; 2022 Mesto Russia</p>       
+    </footer>
+    <div class="popup">
+      <div class="popup__container">
+        <p class="popup__title">Редактировать профиль</p>
+        <div class="popup__form">
+          <input type="text" id="newName" value="Жак-Ив Кусто" placeholder="Жак-Ив Кусто" class="popup__text">
+          <input type="text" id="newDescription" value="Исследователь океана" placeholder="Исследователь океана" class="popup__text input__text_type_artist">
+          <button class="popup__btn form__submit-btn_action_add">
+            Сохранить
+          </button>
+          <button class="popup__close">
+            <img src="images/Close_Icon.png">
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

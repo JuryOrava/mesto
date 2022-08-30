@@ -1,0 +1,9 @@
+.profile__btn{
+    background: none;
+    border: none;
+}
+
+.profile__btn:hover {
+    opacity: 60%;
+    cursor: pointer;
+}
