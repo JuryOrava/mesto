@@ -1,4 +1,4 @@
-.element__item {
+.elements__item {
     background: white;
     height: 361px;
     width: 282px;
@@ -8,6 +8,6 @@
     flex-direction: column;
 }
 
-.element__item:nth-child(3n) {
+.elements__item:nth-child(3n) {
     margin-right: 0;
 }
