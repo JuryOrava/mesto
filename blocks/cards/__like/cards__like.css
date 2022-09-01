@@ -1,9 +1,0 @@
-.cards__like {
-    background: none;
-    border: none;
-}
-
-.cards__like:hover {
-    opacity: 60%;
-    cursor: pointer;
-}
