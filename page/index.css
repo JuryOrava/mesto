@@ -20,12 +20,12 @@
 
 @import url(../blocks/form/form.css);
 
-@import url(../blocks/elements-list/elements-list.css);
-@import url(../blocks/elements-list/__description/element__description.css);
-@import url(../blocks/elements-list/__image/element__image.css);
-@import url(../blocks/elements-list/__item/element__item.css);
-@import url(../blocks/elements-list/__title/element__title.css);
-@import url(../blocks/elements-list/__btn/element__btn.css);
+@import url(../blocks/elements/elements.css);
+@import url(../blocks/elements/__description/element__description.css);
+@import url(../blocks/elements/__image/element__image.css);
+@import url(../blocks/elements/__item/element__item.css);
+@import url(../blocks/elements/__title/element__title.css);
+@import url(../blocks/elements/__btn/element__btn.css);
 
 
 @import url(../blocks/footer/footer.css);
