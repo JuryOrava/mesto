@@ -1,6 +1,7 @@
 .profile__btn{
     background: none;
     border: none;
+    padding: 0;
 }
 
 .profile__btn:hover {
