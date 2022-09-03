@@ -11,11 +11,23 @@
     max-width: 500px;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 900px) {
+    .profile__name-text {
+        max-width: 350px;
+    }
+  }
+
+@media screen and (max-width: 750px) {
     .profile__name-text {
         line-height: 27px;
         font-size: 27px;
-        margin: 22px 10px 14px 0;
+        max-width: 300px;
+    }
+  }
+
+@media screen and (max-width: 650px) {
+    .profile__name-text {
+        margin: 30px 10px 14px 0;
         max-width: 250px;
     }
   }

@@ -11,5 +11,6 @@
 @media screen and (max-width: 860px) {
     .elements {  
         justify-content: space-around;
+        margin-top: 36px;
     }
   }

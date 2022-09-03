@@ -1,5 +1,5 @@
 .profile__description {
-    margin: 0 0 16px;
+    margin: 0;
     font-size: 18px;
     line-height: 22px;
     text-overflow: ellipsis;
@@ -8,11 +8,24 @@
     max-width: 500px;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 900px) {
+    .profile__description {
+        max-width: 350px;
+    }
+  }
+
+@media screen and (max-width: 750px) {
     .profile__description {
         margin-bottom: 36px;
         font-size: 14px;
+        max-width: 300px;
+    }
+  }
+
+@media screen and (max-width: 650px) {
+    .profile__description {
         line-height: 17px;
         max-width: 250px;
+        margin-right: 28px;
     }
   }
