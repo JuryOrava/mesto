@@ -11,14 +11,14 @@ let newName = document.querySelector('.popup__text_type_name');
 let newDescription = document.querySelector('.popup__text_type_desc');
 
 function popupOpened() {
-    popup.classList.add('popup__opened');
+    popup.classList.add('popup_opened');
 
     newName.setAttribute('value', profileName.textContent);
     newDescription.setAttribute('value', profileDescription.textContent);
 }
 
 function popupClosed() {
-    popup.classList.remove('popup__opened');
+    popup.classList.remove('popup_opened');
 }
 
 function profileSave(evt) {

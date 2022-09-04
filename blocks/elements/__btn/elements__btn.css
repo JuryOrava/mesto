@@ -14,5 +14,6 @@
 }
 
 .elements__btn:active {
+    opacity: 1;
     background-image: url(../../../images/heart_active.svg);
 }
