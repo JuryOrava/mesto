@@ -1,22 +1,21 @@
+const popupProfile = document.querySelector('.popup_profile');
+const profileEdit = document.querySelector('.profile__btn');
+const profileEditClose = document.querySelector('.popup__close_profile');
 
-let popupProfile = document.querySelector('.popup_profile');
-let profileEdit = document.querySelector('.profile__btn');
-let profileEditClose = document.querySelector('.popup__close_profile');
+const popupAddPlace = document.querySelector('.popup_place');
+const popupAddPlaceBtn = document.querySelector('.profile__add');
+const placeAddClose = document.querySelector('.popup__close_place');
 
-let popupAddPlace = document.querySelector('.popup_place');
-let popupAddPlaceBtn = document.querySelector('.profile__add');
-let placeAddClose = document.querySelector('.popup__close_place');
+const profileName = document.querySelector('.profile__name-text');
+const profileDescription = document.querySelector('.profile__description');
+const profileEditSave = document.querySelector('.popup__form_profile');
+const placeBtnSaveAdd = document.querySelector('.popup__form_place');
 
-let profileName = document.querySelector('.profile__name-text');
-let profileDescription = document.querySelector('.profile__description');
-let profileEditSave = document.querySelector('.popup__form_profile');
-let placeBtnSaveAdd = document.querySelector('.popup__form_place');
+const newName = document.querySelector('.popup__text_type_profile-name');
+const newDescription = document.querySelector('.popup__text_type_profile-desc');
 
-let newName = document.querySelector('.popup__text_type_profile-name');
-let newDescription = document.querySelector('.popup__text_type_profile-desc');
-
-let placeName = document.querySelector('.popup__text_type_place-name');
-let placeLink = document.querySelector('.popup__text_type_place-link');
+const placeName = document.querySelector('.popup__text_type_place-name');
+const placeLink = document.querySelector('.popup__text_type_place-link');
 
 const popupPlaceImage = document.querySelector('.popup_place-image');
 
@@ -50,35 +49,35 @@ const initialCards = [
   }
 ]; 
 
-function popupOpened() {
+function openedProfilePopup() {
   popupProfile.classList.add('popup_opened');
 
     newName.setAttribute('value', profileName.textContent);
     newDescription.setAttribute('value', profileDescription.textContent);
 }
 
-function popupAddPlaceOpened() {
+function openedPopupAddPlace() {
     popupAddPlace.classList.add('popup_opened');
 }
 
-function popupClosed() {
+function closedProfilePopup() {
   popupProfile.classList.remove('popup_opened');
 }
 
-function popupAddPlaceClosed() {
+function closedPopupAddPlace() {
     popupAddPlace.classList.remove('popup_opened');
 }
 
-function profileSave(evt) {
+function saveProfile(evt) {
     evt.preventDefault();
 
     profileName.textContent = newName.value;
     profileDescription.textContent = newDescription.value;
 
-    popupClosed();
+    closedProfilePopup();
 }
 
-function renderCard (element) {
+function createCard (element) {
   const placeElementStart = placeTemplate.querySelector('.elements__item').cloneNode(true); 
   let popupPlaceImage = document.querySelector('.popup_place-image');
   
@@ -105,35 +104,35 @@ function renderCard (element) {
 } 
 
 initialCards.forEach((element) => {
-  renderCard (element);
-  let result = renderCard (element);
+  createCard (element);
+  let result = createCard (element);
   placeContainer.append(result);
 });
 
-function createCard(evt) {
+function addCard(evt) {
   evt.preventDefault();
 
   let placeArr = [];
   placeArr.push({name: placeName.value, link: placeLink.value});
 
   placeArr.forEach((element) => {
-    renderCard (element);
-    let result = renderCard (element);
+    createCard (element);
+    let result = createCard (element);
     placeContainer.prepend(result);
   });
-  popupAddPlaceClosed();
+  closedPopupAddPlace();
 }
 
 
-profileEdit.addEventListener('click', popupOpened);
-profileEditClose.addEventListener('click', popupClosed);
+profileEdit.addEventListener('click', openedProfilePopup);
+profileEditClose.addEventListener('click', closedProfilePopup);
   
-popupAddPlaceBtn.addEventListener('click', popupAddPlaceOpened);
-placeAddClose.addEventListener('click', popupAddPlaceClosed);
+popupAddPlaceBtn.addEventListener('click', openedPopupAddPlace);
+placeAddClose.addEventListener('click', closedPopupAddPlace);
   
-profileEditSave.addEventListener('submit', profileSave);
+profileEditSave.addEventListener('submit', saveProfile);
 
-placeBtnSaveAdd.addEventListener('submit', createCard);
+placeBtnSaveAdd.addEventListener('submit', addCard);
 
 popupPlaceImage.querySelector('.popup__close_place-image').addEventListener('click', function (evt) {
   popupPlaceImage.classList.remove('popup_opened');
