@@ -79,7 +79,7 @@ function saveProfile(evt) {
 
 function createCard (element) {
   const placeElementStart = placeTemplate.querySelector('.elements__item').cloneNode(true); 
-  let popupPlaceImage = document.querySelector('.popup_place-image');
+  const popupPlaceImage = document.querySelector('.popup_place-image');
   
   placeElementStart.querySelector('.elements__image').src = element.link;
   placeElementStart.querySelector('.elements__title').textContent = element.name;
@@ -90,8 +90,8 @@ function createCard (element) {
   placeElementStart.querySelector('.elements__image-btn').addEventListener('click', function (evt) {
     popupPlaceImage.classList.add('popup_opened');
 
-    let popupPlaceName = document.querySelector('.popup__place-name');
-    let popupPlaceLink = document.querySelector('.popup__place-img');
+    const popupPlaceName = document.querySelector('.popup__place-name');
+    const popupPlaceLink = document.querySelector('.popup__place-img');
        
     popupPlaceName.textContent = element.name;
     popupPlaceLink.setAttribute('src', element.link);
@@ -105,19 +105,19 @@ function createCard (element) {
 
 initialCards.forEach((element) => {
   createCard (element);
-  let result = createCard (element);
+  const result = createCard (element);
   placeContainer.append(result);
 });
 
 function addCard(evt) {
   evt.preventDefault();
 
-  let placeArr = [];
+  const placeArr = [];
   placeArr.push({name: placeName.value, link: placeLink.value});
 
   placeArr.forEach((element) => {
     createCard (element);
-    let result = createCard (element);
+    const result = createCard (element);
     placeContainer.prepend(result);
   });
   closedPopupAddPlace();
