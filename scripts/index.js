@@ -86,7 +86,7 @@ const initialCards = [
   
 initialCards.forEach(function (element) {
   const placeElementStart = placeTemplate.querySelector('.elements__item').cloneNode(true);
-  let popupPlaceImage = document.querySelector('.popup__place-image');
+  let popupPlaceImage = document.querySelector('.popup_place-image');
   
   placeElementStart.querySelector('.elements__image').src = element.link;
   placeElementStart.querySelector('.elements__title').textContent = element.name;
@@ -114,7 +114,7 @@ function addPlace(evt) {
   evt.preventDefault();
 
   const placeElement = placeTemplate.querySelector('.elements__item').cloneNode(true);
-  let popupPlaceImage = document.querySelector('.popup__place-image');
+  let popupPlaceImage = document.querySelector('.popup_place-image');
     
   placeElement.querySelector('.elements__image').src = placeLink.value;
   placeElement.querySelector('.elements__title').textContent = placeName.value;
@@ -142,7 +142,7 @@ function addPlace(evt) {
 
 addPlaceBtnSave.addEventListener('submit', addPlace);
 
-let popupPlaceImage = document.querySelector('.popup__place-image');
+let popupPlaceImage = document.querySelector('.popup_place-image');
 popupPlaceImage.querySelector('.popup__close_place-image').addEventListener('click', function (evt) {
   popupPlaceImage.classList.remove('popup_opened');
 });
