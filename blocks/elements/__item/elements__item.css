@@ -6,6 +6,7 @@
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .elements__item:nth-child(3n) {

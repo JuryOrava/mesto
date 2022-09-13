@@ -30,66 +30,53 @@
       </section>
       <section>
       <ul class="elements">
-        <li class="elements__item">
-          <img class="elements__image" src="images/karachaevo.jpg" alt="Карачаевск">
-          <div class="elements__description">
-            <h3 class="elements__title">Карачаевск</h3>
-            <button type="button" class="elements__btn"></button>
-          </div>
-        </li>
-        <li class="elements__item">
-          <img class="elements__image" src="images/elbrus.jpg" alt="Гора Эльбрус">
-          <div class="elements__description">
-            <h3 class="elements__title">Гора Эльбрус</h3> 
-            <button type="button" class="elements__btn"></button>
-          </div>
-        </li>
-        <li class="elements__item">
-          <img class="elements__image" src="images/dombai.jpg" alt="Домбаи">
-          <div class="elements__description">
-            <h3 class="elements__title">Домбаи</h3>
-            <button type="button" class="elements__btn"></button>
-          </div>
-        </li> 
-
-        <li class="elements__item">
-          <img class="elements__image" src="images/elbrus.jpg" alt="Гора Эльбрус">
-          <div class="elements__description">
-            <h3 class="elements__title">Гора Эльбрус</h3>
-            <button type="button" class="elements__btn"></button>
-          </div>
-        </li>
-        <li class="elements__item">
-          <img class="elements__image" src="images/dombai.jpg" alt="Домбаи">
-          <div class="elements__description">
-            <h3 class="elements__title">Домбаи</h3>
-            <button type="button" class="elements__btn"></button>
-          </div>
-        </li> 
-        <li class="elements__item">
-          <img class="elements__image" src="images/karachaevo.jpg" alt="Карачаевск">
-          <div class="elements__description">
-            <h3 class="elements__title">Карачаево-Черкессия</h3>
-            <button type="button" class="elements__btn"></button>
-          </div>
-        </li>
       </ul>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__author">&copy; 2022 Mesto Russia</p>       
     </footer>
-    <div class="popup">
+    <div class="popup popup_profile">
       <div class="popup__container">
         <h3 class="popup__title">Редактировать профиль</h3>
-        <button type="button" class="popup__close"><img src="images/Close_Icon.svg" alt="Закрыть окно" class="popup__close-img"></button>
-        <form name="profile-edit" class="popup__form">
-          <input type="text" value="" placeholder="Жак-Ив Кусто" class="popup__text popup__text_type_name">
-          <input type="text" value="" placeholder="Исследователь океана" class="popup__text popup__text_type_desc">
+        <button type="button" class="popup__close popup__close_profile"><img src="images/Close_Icon.svg" alt="Закрыть окно" class="popup__close-img"></button>
+        <form name="profile-edit" class="popup__form popup__form_profile">
+          <input type="text" value="" placeholder="Жак-Ив Кусто" class="popup__text popup__text_type_name popup__text_type_profile-name">
+          <input type="text" value="" placeholder="Исследователь океана" class="popup__text popup__text_type_desc popup__text_type_profile-desc">
           <button type="submit" class="popup__btn">Сохранить</button>
         </form>
       </div>
     </div>
+    <div class="popup popup_place">
+      <div class="popup__container">
+        <h3 class="popup__title">Новое место</h3>
+        <button type="button" class="popup__close popup__close_place"><img src="images/Close_Icon.svg" alt="Закрыть окно" class="popup__close-img"></button>
+        <form name="place-add" class="popup__form popup__form_place">
+          <input type="text" value="" placeholder="Название" class="popup__text popup__text_type_name popup__text_type_place-name">
+          <input type="text" value="" placeholder="Ссылка на картинку" class="popup__text popup__text_type_desc popup__text_type_place-link">
+          <button type="submit" class="popup__btn">Создать</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup__place-image">
+      <div class="popup__place-container">
+        <button type="button" class="popup__close popup__close_place-image"><img src="images/Close_Icon.svg" alt="Закрыть окно" class="popup__close-img"></button>
+        <img src="" alt="" class="popup__place-img">
+        <p class="popup__place-name"></p>
+      </div>
+    </div>
+    <template id="place-template">
+      <li class="elements__item">
+        <button type="button" class="elements__delete"><img src="images/delete_icon.svg" alt="Удалить карточку" class="elements__delete-img"></button>
+        <button type="button" class="elements__image-btn">
+          <img class="elements__image" src="" alt="">
+        </button>
+        <div class="elements__description">
+          <h3 class="elements__title"></h3>
+          <button type="button" class="elements__btn"></button>
+        </div>
+      </li>
+    </template>
   </div>
   <script src="scripts/index.js"></script>
 </body>
