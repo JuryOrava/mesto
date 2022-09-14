@@ -49,22 +49,22 @@ const initialCards = [
   }
 ]; 
 
-function openedProfilePopup() {
+function openProfilePopup() {
   popupProfile.classList.add('popup_opened');
 
     newName.setAttribute('value', profileName.textContent);
     newDescription.setAttribute('value', profileDescription.textContent);
 }
 
-function openedPopupAddPlace() {
+function openPopupAddPlace() {
     popupAddPlace.classList.add('popup_opened');
 }
 
-function closedProfilePopup() {
+function closeProfilePopup() {
   popupProfile.classList.remove('popup_opened');
 }
 
-function closedPopupAddPlace() {
+function closePopupAddPlace() {
     popupAddPlace.classList.remove('popup_opened');
 }
 
@@ -74,7 +74,7 @@ function saveProfile(evt) {
     profileName.textContent = newName.value;
     profileDescription.textContent = newDescription.value;
 
-    closedProfilePopup();
+    closeProfilePopup();
 }
 
 function createCard (element) {
@@ -120,15 +120,15 @@ function addCard(evt) {
     const result = createCard (element);
     placeContainer.prepend(result);
   });
-  closedPopupAddPlace();
+  closePopupAddPlace();
 }
 
 
-profileEdit.addEventListener('click', openedProfilePopup);
-profileEditClose.addEventListener('click', closedProfilePopup);
+profileEdit.addEventListener('click', openProfilePopup);
+profileEditClose.addEventListener('click', closeProfilePopup);
   
-popupAddPlaceBtn.addEventListener('click', openedPopupAddPlace);
-placeAddClose.addEventListener('click', closedPopupAddPlace);
+popupAddPlaceBtn.addEventListener('click', openPopupAddPlace);
+placeAddClose.addEventListener('click', closePopupAddPlace);
   
 profileEditSave.addEventListener('submit', saveProfile);
 
