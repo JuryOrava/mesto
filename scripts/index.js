@@ -52,17 +52,23 @@ const initialCards = [
 function openProfilePopup() {
   popupProfile.classList.add('popup_opened');
 
-    newName.setAttribute('value', profileName.textContent);
-    newDescription.setAttribute('value', profileDescription.textContent);
+  newName.setAttribute('value', profileName.textContent);
+  newDescription.setAttribute('value', profileDescription.textContent);
+
+  document.addEventListener('keydown', closePopupKey);
 }
 
 function openPopupAddPlace() {
-    popupAddPlace.classList.add('popup_opened');
+  popupAddPlace.classList.add('popup_opened');
+
+  document.addEventListener('keydown', closePopupKey);
 }
 
 function closePopup() {
   const popupClosed = document.querySelector('.popup_opened');
   popupClosed.classList.remove('popup_opened');
+
+  document.removeEventListener('keydown', closePopupKey);
 }
 
 function saveProfile(evt) {
@@ -139,8 +145,6 @@ placeBtnSaveAdd.addEventListener('submit', addCard);
 popupPlaceImage.querySelector('.popup__close_place-image').addEventListener('click', function (evt) {
   popupPlaceImage.classList.remove('popup_opened');
 });
-
-document.addEventListener('keydown', closePopupKey);
 
 document.addEventListener('click', function (evt) {
   if (evt.target.closest(".popup__container")) {
