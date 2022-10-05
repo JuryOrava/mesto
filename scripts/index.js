@@ -60,12 +60,9 @@ function openPopupAddPlace() {
     popupAddPlace.classList.add('popup_opened');
 }
 
-function closeProfilePopup() {
-  popupProfile.classList.remove('popup_opened');
-}
-
-function closePopupAddPlace() {
-    popupAddPlace.classList.remove('popup_opened');
+function closePopup() {
+  const popupClosed = document.querySelector('.popup_opened');
+  popupClosed.classList.remove('popup_opened');
 }
 
 function saveProfile(evt) {
@@ -74,7 +71,7 @@ function saveProfile(evt) {
     profileName.textContent = newName.value;
     profileDescription.textContent = newDescription.value;
 
-    closeProfilePopup();
+    closePopup();
 }
 
 function createCard (element) {
@@ -120,15 +117,20 @@ function addCard(evt) {
     const result = createCard (element);
     placeContainer.prepend(result);
   });
-  closePopupAddPlace();
+  closePopup();
 }
 
+function closePopupKey(evt) {
+  if (evt.key === 'Escape') {
+    closePopup();
+  }
+}
 
 profileEdit.addEventListener('click', openProfilePopup);
-profileEditClose.addEventListener('click', closeProfilePopup);
+profileEditClose.addEventListener('click', closePopup);
   
 popupAddPlaceBtn.addEventListener('click', openPopupAddPlace);
-placeAddClose.addEventListener('click', closePopupAddPlace);
+placeAddClose.addEventListener('click', closePopup); 
   
 profileEditSave.addEventListener('submit', saveProfile);
 
@@ -136,4 +138,15 @@ placeBtnSaveAdd.addEventListener('submit', addCard);
 
 popupPlaceImage.querySelector('.popup__close_place-image').addEventListener('click', function (evt) {
   popupPlaceImage.classList.remove('popup_opened');
+});
+
+document.addEventListener('keydown', closePopupKey);
+
+document.addEventListener('click', function (evt) {
+  if (evt.target.closest(".popup__container")) {
+    evt.stopPropagation();
+  }
+  else if (evt.target.closest(".popup")) {
+    closePopup();
+  }
 });
