@@ -1,8 +1,9 @@
 export default class Card {
-    constructor(data, templateSelector) {
+    constructor(data, templateSelector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._templateSelector = templateSelector;
+        this._handleCardClick = handleCardClick;
     }
     
     _getTemplate() {
@@ -15,41 +16,31 @@ export default class Card {
         return cardElement;
     }
     
-    generateCard = (openPopup) => {
+    generateCard = () => {
         this._element = this._getTemplate();
+        this._cardImage = this._element.querySelector('.elements__image'); 
+        this._cardTitle = this._element.querySelector('.elements__title');
+        this._likeButton = this._element.querySelector('.elements__btn');
+        this._delButton = this._element.querySelector('.elements__delete')
 
-        this._element.querySelector('.elements__image').src = this._link;
-        this._element.querySelector('.elements__title').textContent = this._name;
-        this._element.querySelector('.elements__image').alt = this._name;
+        this._cardImage.src = this._link;
+        this._cardTitle.textContent = this._name;
+        this._cardImage.alt = this._name;
 
-        this._likeCard();
-
-        this._openPopupImage(openPopup, this._name, this._link);
-
-        this._delCard();
+        this._setEventListener ();
 
         return this._element;
     }
 
-    _likeCard () {
-        this._element.querySelector('.elements__btn').addEventListener('click', function (evt) {
+    _setEventListener () {
+        this._likeButton.addEventListener('click', function (evt) {
             evt.target.classList.toggle('elements__btn_active');
         });
-    }
-
-    _openPopupImage = (openPopup, name, link) => {
-        this._element.querySelector('.elements__image-btn').addEventListener('click', function (evt) {
-            openPopup(document.querySelector('.popup_place-image'));
-
-            document.querySelector('.popup__place-name').textContent = name;
-            document.querySelector('.popup__place-img').setAttribute('src', link);
-            document.querySelector('.popup__place-img').setAttribute('alt', name);
+        this._cardImage.addEventListener('click', () => {
+            this._handleCardClick(this._name, this._link);
+        });
+        this._delButton.addEventListener('click', () => {
+            this._element.remove();
         });
     }
-
-	_delCard = () => {
-		this._element.querySelector('.elements__delete').addEventListener('click', () => {
-            this._element.remove();
-        }
-    )};
 }

@@ -3,12 +3,9 @@ import FormValidator from './FormValidator.js';
 
 const popupProfile = document.querySelector('.popup_profile');
 const profileEdit = document.querySelector('.profile__btn');
-const profileEditClose = document.querySelector('.popup__close_profile');
 
 const popupAddPlace = document.querySelector('.popup_place');
 const popupAddPlaceBtn = document.querySelector('.profile__add');
-const placeAddClose = document.querySelector('.popup__close_place');
-const placeAddBtn = document.querySelector('.popup__btn-place');
 
 const profileName = document.querySelector('.profile__name-text');
 const profileDescription = document.querySelector('.profile__description');
@@ -23,6 +20,10 @@ const placeLink = document.querySelector('.popup__text_type_place-link');
 
 const popupPlaceImage = document.querySelector('.popup_place-image');
 
+const popupPlaceImageName = document.querySelector('.popup__place-name');
+const popupPlaceImageElem = document.querySelector('.popup__place-img');
+
+const elements = document.querySelector('.elements')
 
 const enableValidationSet = ({
   formSelector: '.popup__form',
@@ -33,10 +34,11 @@ const enableValidationSet = ({
   errorClass: 'popup__input-error_active'
 });
 
-const FormValidators = new FormValidator(enableValidationSet);
+const FormValidatorProfile = new FormValidator(enableValidationSet, popupProfile);
+const FormValidatorPlace = new FormValidator(enableValidationSet, popupAddPlace);
 
-FormValidators.enableValidation(enableValidationSet);
-
+FormValidatorProfile.enableValidation();
+FormValidatorPlace.enableValidation();
 
 const initialCards = [
   {
@@ -65,19 +67,23 @@ const initialCards = [
   }
 ]; 
 
-const popupList = Array.from(document.querySelectorAll('.popup'));
-popupList.forEach(function (element) {
-    element.addEventListener('click', function (evt) {
-      if (evt.target.closest(".popup__container") || evt.target.closest(".popup__place-container")) {
-      }
-      else if (element.classList.contains("popup")) {
-        closePopup(element);
-      }
+const popupList = document.querySelectorAll('.popup');
+
+popupList.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup)
+    }
+    popup.querySelector('.popup__close').addEventListener('click', (evt) => {
+      closePopup(popup);
     });
   });
+});
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+
+  FormValidatorPlace.resetValidation();
 
   document.addEventListener('keydown', closeByEsc);
 } 
@@ -94,9 +100,6 @@ function openAddPlacePopup() {
   placeLink.value = '';
 
   openPopup(popupAddPlace);
-
-  placeAddBtn.classList.add('popup__btn_inactive');
-  placeAddBtn.setAttribute("disabled", "true");
 }
 
 function closePopup(popup) {
@@ -114,22 +117,30 @@ function saveProfile(evt) {
     closePopup(popupProfile);
 }
 
-initialCards.forEach((item) => {
-  const card = new Card(item, '#place-template');
-  const cardElement = card.generateCard(openPopup);
+function createCard(item) {
+  const card = new Card(item, '#place-template', handleCardClick);
+  const cardElement = card.generateCard();
+  return cardElement
+}
 
-  document.querySelector('.elements').append(cardElement);
+initialCards.forEach((item) => {
+  elements.append(createCard(item));
 });
 
 function addCard(evt) {
   evt.preventDefault();
-
-  const card = new Card ({name: placeName.value, link: placeLink.value}, '#place-template');
-  const cardElement = card.generateCard(openPopup); 
-  
-  document.querySelector('.elements').prepend(cardElement);
+    
+  elements.prepend(createCard({name: placeName.value, link: placeLink.value}));
 
   closePopup(popupAddPlace);
+}
+
+function handleCardClick(name, link) {
+  popupPlaceImageName.textContent = name;
+  popupPlaceImageElem.setAttribute('src', link);
+  popupPlaceImageElem.setAttribute('alt', name);
+
+  openPopup(popupPlaceImage);
 }
 
 function closeByEsc(evt) {
@@ -139,27 +150,12 @@ function closeByEsc(evt) {
   }
 }
 
-
-
 profileEdit.addEventListener('click', openProfilePopup) 
-
-profileEditClose.addEventListener('click', function (evt) {
-  closePopup(popupProfile);
-});
   
 popupAddPlaceBtn.addEventListener('click', function (evt) {
   openAddPlacePopup();
 });
-
-placeAddClose.addEventListener('click', function (evt) {
-  closePopup(popupAddPlace);
-}); 
   
 profileEditSave.addEventListener('submit', saveProfile);
 
 placeBtnSaveAdd.addEventListener('submit', addCard);
-
-popupPlaceImage.querySelector('.popup__close_place-image').addEventListener('click', function (evt) {
-  closePopup(popupPlaceImage);
-});
-
