@@ -34,11 +34,11 @@ const enableValidationSet = ({
   errorClass: 'popup__input-error_active'
 });
 
-const FormValidatorProfile = new FormValidator(enableValidationSet, popupProfile);
-const FormValidatorPlace = new FormValidator(enableValidationSet, popupAddPlace);
+const formValidatorProfile = new FormValidator(enableValidationSet, popupProfile);
+const formValidatorPlace = new FormValidator(enableValidationSet, popupAddPlace);
 
-FormValidatorProfile.enableValidation();
-FormValidatorPlace.enableValidation();
+formValidatorProfile.enableValidation();
+formValidatorPlace.enableValidation();
 
 const initialCards = [
   {
@@ -83,8 +83,6 @@ popupList.forEach((popup) => {
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 
-  FormValidatorPlace.resetValidation();
-
   document.addEventListener('keydown', closeByEsc);
 } 
 
@@ -98,6 +96,8 @@ function openProfilePopup() {
 function openAddPlacePopup() {
   placeName.value = '';
   placeLink.value = '';
+
+  formValidatorPlace.resetValidation();
 
   openPopup(popupAddPlace);
 }
