@@ -10,8 +10,8 @@ export default class Section {
       this._container.append(element);
     }
 
-    addNewItem() {
-        this._container.prepend();
+    prependItem(element) {
+        this._container.prepend(element);
       }
 
     //отвечает за отрисовку всех элементов. Отрисовка каждого отдельного элемента должна осуществляться функцией renderer

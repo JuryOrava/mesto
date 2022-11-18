@@ -25,8 +25,7 @@ formValidatorPlace.enableValidation();
 const cardList = new Section({
   data: initialCards,
   renderer: (item) => {
-    const card = new Card(item, '#place-template', handleCardClick);
-    const cardElement = card.generateCard();
+    const cardElement = createCard(item)
     cardList.addItem(cardElement);
   }
 }, '.elements');
@@ -51,10 +50,7 @@ function createCard(item) {
 }
 
 function callSubmitFormMesto(items) {
-  const newCard = new Section({
-    data: items,
-    renderer: elements.prepend(createCard(items))
-  },'.elements');
+  cardList.prependItem(createCard(items));
 }
 
 profileEdit.addEventListener('click', function () {
