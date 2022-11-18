@@ -1,18 +1,20 @@
-import { popupProfileInputName, popupProfileInputDesc } from '../utils/constants.js';
-
 export default class UserInfo {
     constructor(nameSelector, descriptionSelector) {
-      this._nameSelector = nameSelector;
-      this._descriptionSelector = descriptionSelector;
+      this._name = document.querySelector(nameSelector);
+      this._description = document.querySelector(descriptionSelector);
     }
 
     getUserInfo(){
-        popupProfileInputName.value = this._nameSelector.textContent;
-        popupProfileInputDesc.value = this._descriptionSelector.textContent;
+      this._information = {
+        name: this._name.textContent,
+        description: this._description.textContent
+      };
+
+      return this._information;
     }
 
-    setUserInfo(name, description){
-        this._nameSelector.textContent = name;
-        this._descriptionSelector.textContent = description;
+    setUserInfo(obj){
+        this._name.textContent = obj.profileName;
+        this._description.textContent = obj.profileDesc;
     }
   }
