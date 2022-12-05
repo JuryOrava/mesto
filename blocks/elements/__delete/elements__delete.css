@@ -5,6 +5,7 @@
     background: none;
     border: none;
     padding: 0;
+    display: none;
 }
 
 .elements__delete:hover {

@@ -4,6 +4,8 @@ export const profileEdit = document.querySelector('.profile__btn');
 export const popupAddPlace = document.querySelector('.popup_place');
 export const popupAddPlaceBtn = document.querySelector('.profile__add');
 
+export const popupAddImage = document.querySelector('.popup_profile-foto');
+
 export const profileEditSave = document.querySelector('.popup__form_profile');
 export const placeBtnSaveAdd = document.querySelector('.popup__form_place');
 
@@ -22,6 +24,9 @@ export const popupProfileInputName = document.querySelector('.popup__text_type_p
 export const popupProfileInputDesc = document.querySelector('.popup__text_type_profile-desc');
 
 export const elements = document.querySelector('.elements');
+
+export const popupEditFoto = document.querySelector('.profile__edit-image');
+export const profileAva = document.querySelector('.profile__image');
 
 export const enableValidationSet = ({
   formSelector: '.popup__form',

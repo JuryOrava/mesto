@@ -18,6 +18,7 @@
       <section class="profile">
         <div class="profile__info">
           <img class="profile__image" src="/images/avatar.jpg" alt="Аватарка">
+          <img class="profile__edit-image" src="/images/ava-edit.svg" alt="Редактирование авы">
           <div class="profile__descriptions">
             <div class="profile__name">
               <h1 class="profile__name-text">Жак-Ив Кусто</h1>
@@ -53,6 +54,19 @@
         </form>
       </div>
     </div>
+    <div class="popup popup_profile-foto">
+      <div class="popup__container popup__container_profile-foto">
+        <h3 class="popup__title">Обновить аватар</h3>
+        <button type="button" class="popup__close popup__close_profile"><img src="/images/Close_Icon.svg" alt="Закрыть окно" class="popup__close-img"></button>
+        <form name="profile-edit" class="popup__form popup__form_profile" novalidate>
+          <label class="popup__input">
+            <input type="url" name="link" id="place-img-input" required value="" placeholder="Ссылка на картинку" class="popup__text popup__text_type_desc popup__text_type_place-link">
+            <span class="popup__input-error place-img-input-error"></span>
+          </label>
+          <button type="submit" class="popup__btn">Сохранить</button>
+        </form>
+      </div>
+    </div>
     <div class="popup popup_place">
       <div class="popup__container">
         <h3 class="popup__title">Новое место</h3>
@@ -67,6 +81,16 @@
             <span class="popup__input-error place-img-input-error"></span>
           </label>
           <button type="submit" class="popup__btn popup__btn-place">Создать</button>
+        </form>
+      </div>
+    </div> 
+    <div class="popup popup_del-place">
+      <div class="popup__container popup__container_del-place">
+        <h3 class="popup__title popup__title_del-place">Вы уверены?</h3>
+        <button type="button" class="popup__close popup__close_place"><img src="/images/Close_Icon.svg" alt="Закрыть окно" class="popup__close-img"></button>
+        <form name="place-add" class="popup__form popup__form_place" novalidate>
+          <input type="text" name="id" id="id" value="" placeholder="id" class="popup__text popup__none-input">
+          <button type="submit" class="popup__btn popup__btn-place">Да</button>
         </form>
       </div>
     </div>
@@ -85,17 +109,22 @@
         </button>
         <div class="elements__description">
           <h3 class="elements__title"></h3>
-          <button type="button" class="elements__btn"></button>
+          <div class="elements__like">
+            <button type="button" class="elements__btn"></button>
+            <p class="elements__like-length">0</p>
+          </div>
         </div>
       </li>
     </template>
   </div>
   <script type="module" src="pages/index.js"></script>
   <script type="module" src="./utils/constants.js"></script>
+  <script type="module" src="./components/Api.js"></script>
   <script type="module" src="./components/Card.js"></script>
   <script type="module" src="./components/FormValidator.js"></script>
   <script type="module" src="./components/Popup.js"></script>
   <script type="module" src="./components/PopupWithForm.js"></script>
+  <script type="module" src="./components/PopupWithConfirmation.js"></script>
   <script type="module" src="./components/PopupWithImage.js"></script>
   <script type="module" src="./components/Section.js"></script>
   <script type="module" src="./components/UserInfo.js"></script>
