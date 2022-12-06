@@ -28,25 +28,22 @@ function renderLoading(isLoading, popup, btn, text) {
 }
 
 const cardList = new Section({
-  renderer: (item) => {
-    const cardElement = createCard(item)
+  renderer: (item, userId) => {
+    const cardElement = createCard(item, userId)
     cardList.addItem(cardElement);
   }
 }, '.elements');
 
-api.getInitialCards()
-.then((result) => {
-  cardList.renderItems(result);
-})
-.catch((err) => {
-  console.log(err);
-});
 
-api.getUserInfo()
-.then((result) => {
-  userInfoServer(result)
+Promise.all([
+  api.getUserInfo(),
+  api.getInitialCards()
+])
+.then((values)=>{ 
+  userInfoServer(values[0]);
+  cardList.renderItems(values[1], values[0]._id);
 })
-.catch((err) => {
+.catch((err)=>{
   console.log(err);
 });
 
@@ -70,7 +67,6 @@ popupProfilesFoto.setEventListeners();
 
 const popupDeleteImage = new PopupWithConfirmation('.popup_del-place', callSubmitFormDelFoto);
 popupDeleteImage.setEventListeners();
-popupDeleteImage.removePlace();
 
 const popupImage = new PopupWithImage('.popup_place-image');
 popupImage.setEventListeners();
@@ -79,12 +75,15 @@ function handleCardClick(name, link) {
   popupImage.open(name, link);
 }
 
-function handleCardDelFotoClick (id, element) {
-  popupDeleteImage.open(id, element);
+function handleCardDelFotoClick (id, element, removeCard) {
+  popupDeleteImage.open(id, element, removeCard);
 }
 
-function callSubmitFormDelFoto (obj, popup, btn, text) {
+function callSubmitFormDelFoto (obj, popup, btn, text, element, removeCard) {
   api.deleteCard(obj)
+  .then(() => {
+    removeCard(element)
+  })
   .catch((err) => {
     console.log(err);
   })
@@ -96,6 +95,9 @@ function callSubmitFormDelFoto (obj, popup, btn, text) {
 
 function callSubmitFormEditFoto (obj, popup, btn, text) {
   api.editProfileAvatar(obj)
+  .then(() => {
+    profileAva.setAttribute('src', obj.link)
+  })
   .catch((err) => {
     console.log(err);
   })
@@ -103,8 +105,6 @@ function callSubmitFormEditFoto (obj, popup, btn, text) {
     renderLoading(false, popup, btn, text)
   });
   renderLoading(true, popup, btn, text)
-
-  profileAva.setAttribute('src', obj.link)
 }
 
 const userInfo = new UserInfo('.profile__name-text', '.profile__description', '.profile__image');
@@ -127,29 +127,41 @@ function callSubmitFormProfile(obj, popup, btn, text) {
   renderLoading(true, popup, btn, text)
 }
 
-function createCard(item) {
-  const card = new Card(item, '#place-template', handleCardClick, handleCardDelFotoClick, likeCard, deleteLikeCard);
+function createCard(item, userId) {
+  const card = new Card(item, '#place-template', handleCardClick, handleCardDelFotoClick, likeCard, deleteLikeCard, userId, handleLikeCard, handleDislikeCard);
   const cardElement = card.generateCard();
 
   return cardElement
 }
 
-function likeCard (element, id) {
-  api.likeCard(id)
-  .catch((err) => {
-    console.log(err);
-  });
+function handleLikeCard() {
 
-  element.classList.add('elements__btn_active');
 }
 
-function deleteLikeCard(element, id) {
-  api.deleteLikeCard(id)
+function likeCard (element, id, likeLength, setLikeCount) {
+  api.likeCard(id)
+  .then(() => {
+    let count = likeLength.textContent = Number(likeLength.textContent) + 1;
+    setLikeCount(element, count, likeLength)
+  })
   .catch((err) => {
     console.log(err);
   });
+}
 
-  element.classList.remove('elements__btn_active');
+function handleDislikeCard() {
+
+}
+
+function deleteLikeCard(element, id, likeLength, setLikeCount) {
+  api.deleteLikeCard(id)
+  .then(() => {
+    let count = likeLength.textContent = Number(likeLength.textContent) - 1;
+    setLikeCount(element, count, likeLength);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 } 
 
 function callSubmitFormMesto(items, popup, btn, text) {
