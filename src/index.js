@@ -1,4 +1,5 @@
-import {popupAddImage, profileAva, popupEditFoto, popupProfileInputName, popupProfileInputDesc, popupAddPlaceBtn, popupAddPlace, profileEdit, enableValidationSet, popupProfile, initialCards} from '../utils/constants.js';
+import {popupAddImage, profileAva, popupEditFoto, popupProfileInputName, popupProfileInputDesc, popupAddPlaceBtn, popupAddPlace, profileEdit, settingsValidationSet, popupProfile} from '../utils/constants.js';
+import {renderLoading} from '../utils/utils.js';
 
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
@@ -18,16 +19,6 @@ const api = new Api({
     'Content-Type': 'application/json'
   },
 });
-
-function renderLoading(isLoading, popup, btn, text) {
-  if (isLoading) {
-    btn.textContent = 'Сохранение...';
-  }
-  else {
-    btn.textContent = text;
-    popup.classList.remove('popup_opened');
-  }
-}
 
 const cardList = new Section({
   renderer: (item, userId) => {
@@ -49,13 +40,13 @@ Promise.all([
   console.log(err);
 });
 
-const formValidatorProfile = new FormValidator(enableValidationSet, popupProfile);
+const formValidatorProfile = new FormValidator(settingsValidationSet, popupProfile);
 formValidatorProfile.enableValidation();
 
-const formValidatorPlace = new FormValidator(enableValidationSet, popupAddPlace);
+const formValidatorPlace = new FormValidator(settingsValidationSet, popupAddPlace);
 formValidatorPlace.enableValidation();
 
-const formValidatorImage = new FormValidator(enableValidationSet, popupAddImage);
+const formValidatorImage = new FormValidator(settingsValidationSet, popupAddImage);
 formValidatorImage.enableValidation();
 
 const popupPlace = new PopupWithForm('.popup_place', callSubmitFormMesto);
@@ -183,8 +174,10 @@ function callSubmitFormMesto(items, popup, btn, text) {
 profileEdit.addEventListener('click', function () {
   popupProfiles.open();
 
-  popupProfileInputName.value = userInfo.getUserInfo().name;
-  popupProfileInputDesc.value = userInfo.getUserInfo().description;
+  const userInfoObj = userInfo.getUserInfo();
+
+  popupProfileInputName.value = userInfoObj.name;
+  popupProfileInputDesc.value = userInfoObj.description;
 }); 
   
 popupAddPlaceBtn.addEventListener('click', function () {

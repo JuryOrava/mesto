@@ -23,12 +23,12 @@ export const popupPlaceImageElem = document.querySelector('.popup__place-img');
 export const popupProfileInputName = document.querySelector('.popup__text_type_profile-name');
 export const popupProfileInputDesc = document.querySelector('.popup__text_type_profile-desc');
 
-export const elements = document.querySelector('.elements');
+//export const cardsContainer = document.querySelector('.elements');
 
 export const popupEditFoto = document.querySelector('.profile__edit-image');
 export const profileAva = document.querySelector('.profile__image');
 
-export const enableValidationSet = ({
+export const settingsValidationSet = ({
   formSelector: '.popup__form',
   inputSelector: '.popup__text',
   submitButtonSelector: '.popup__btn',
